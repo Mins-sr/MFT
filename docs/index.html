@@ -45,17 +45,11 @@
           <h2>最新の更新</h2>
           <div class="tag-filters">
             <button class="tag-filter active" data-tag="all">すべて</button>
-            <button class="tag-filter" data-tag="サンプル">サンプル</button>
-            <button class="tag-filter" data-tag="技術">技術</button>
-            <button class="tag-filter" data-tag="ニュース">ニュース</button>
-            <button class="tag-filter" data-tag="ブログ">ブログ</button>
+            <button class="tag-filter" data-tag="サンプル">サンプル</button><button class="tag-filter" data-tag="技術">技術</button><button class="tag-filter" data-tag="ニュース">ニュース</button><button class="tag-filter" data-tag="ブログ">ブログ</button>
           </div>
         </div>
         <div class="updates-grid">
-          <div class="empty-state">
-            <p>まだ更新はありません</p>
-            <p>URLを追加して巡回を待ちましょう</p>
-          </div>
+          <div class="empty-state"><p>まだ更新はありません</p><p>URLを追加して巡回を待ちましょう</p></div>
         </div>
       </section>
 
@@ -69,19 +63,21 @@
           </button>
         </div>
         <div class="feeds-list">
-          <div class="feed-item" data-id="example-1">
-            <div class="feed-info">
-              <h4 class="feed-title">Example Site</h4>
-              <a class="feed-url" href="https://example.com" target="_blank">https://example.com</a>
-              <div class="feed-tags">
-                <span class="tag small">サンプル</span>
-              </div>
-            </div>
-            <div class="feed-status">
-              <span class="status-label">最終確認:</span>
-              <span class="status-value">未取得</span>
-            </div>
-          </div>
+          
+    <div class="feed-item" data-id="example-1">
+      <div class="feed-info">
+        <h4 class="feed-title">Example Domain</h4>
+        <a class="feed-url" href="https://example.com" target="_blank">https://example.com</a>
+        <div class="feed-tags">
+          <span class="tag small">サンプル</span>
+        </div>
+      </div>
+      <div class="feed-status">
+        <span class="status-label">最終確認:</span>
+        <span class="status-value">2026/01/19 15:31</span>
+      </div>
+    </div>
+  
         </div>
       </section>
 
@@ -95,22 +91,27 @@
             <h3>タグ管理</h3>
             <div class="tag-manager">
               <div class="current-tags">
-                <span class="tag editable" data-tag="サンプル">
-                  サンプル
-                  <button class="tag-remove" aria-label="削除">×</button>
-                </span>
-                <span class="tag editable" data-tag="技術">
-                  技術
-                  <button class="tag-remove" aria-label="削除">×</button>
-                </span>
-                <span class="tag editable" data-tag="ニュース">
-                  ニュース
-                  <button class="tag-remove" aria-label="削除">×</button>
-                </span>
-                <span class="tag editable" data-tag="ブログ">
-                  ブログ
-                  <button class="tag-remove" aria-label="削除">×</button>
-                </span>
+                
+                  <span class="tag editable" data-tag="サンプル">
+                    サンプル
+                    <button class="tag-remove" aria-label="削除">×</button>
+                  </span>
+                
+                  <span class="tag editable" data-tag="技術">
+                    技術
+                    <button class="tag-remove" aria-label="削除">×</button>
+                  </span>
+                
+                  <span class="tag editable" data-tag="ニュース">
+                    ニュース
+                    <button class="tag-remove" aria-label="削除">×</button>
+                  </span>
+                
+                  <span class="tag editable" data-tag="ブログ">
+                    ブログ
+                    <button class="tag-remove" aria-label="削除">×</button>
+                  </span>
+                
               </div>
               <div class="add-tag-form">
                 <input type="text" id="new-tag-input" placeholder="新しいタグ名">
@@ -153,22 +154,27 @@
           <div class="form-group">
             <label>タグ</label>
             <div class="tag-select">
-              <label class="tag-checkbox">
-                <input type="checkbox" name="tags" value="サンプル">
-                <span>サンプル</span>
-              </label>
-              <label class="tag-checkbox">
-                <input type="checkbox" name="tags" value="技術">
-                <span>技術</span>
-              </label>
-              <label class="tag-checkbox">
-                <input type="checkbox" name="tags" value="ニュース">
-                <span>ニュース</span>
-              </label>
-              <label class="tag-checkbox">
-                <input type="checkbox" name="tags" value="ブログ">
-                <span>ブログ</span>
-              </label>
+              
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="tags" value="サンプル">
+                  <span>サンプル</span>
+                </label>
+              
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="tags" value="技術">
+                  <span>技術</span>
+                </label>
+              
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="tags" value="ニュース">
+                  <span>ニュース</span>
+                </label>
+              
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="tags" value="ブログ">
+                  <span>ブログ</span>
+                </label>
+              
             </div>
           </div>
         </form>
@@ -181,7 +187,7 @@
 
     <!-- フッター -->
     <footer class="main-footer">
-      <p>最終更新: <time id="last-update">2026-01-19 14:39</time></p>
+      <p>最終更新: <time id="last-update">2026/01/19 15:31</time></p>
       <p class="footer-meta">Powered by GitHub Actions · 1時間ごとに自動巡回</p>
     </footer>
   </div>
