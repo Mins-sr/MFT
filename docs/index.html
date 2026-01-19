@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MFT - My Favorite Things</title>
+  <meta name="description" content="お気に入りサイトの更新を追跡するRSSライクなフィードリーダー">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- ヘッダー -->
+    <header class="main-header">
+      <div class="header-content">
+        <div class="logo">
+          <span class="logo-icon">⚡</span>
+          <h1>MFT</h1>
+          <span class="logo-tagline">My Favorite Things</span>
+        </div>
+        <nav class="header-nav">
+          <button class="nav-btn active" data-view="updates">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg>
+            更新
+          </button>
+          <button class="nav-btn" data-view="feeds">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z"/></svg>
+            フィード
+          </button>
+          <button class="nav-btn" data-view="settings">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+            設定
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+      <!-- 更新ビュー -->
+      <section id="updates-view" class="view active">
+        <div class="view-header">
+          <h2>最新の更新</h2>
+          <div class="tag-filters">
+            <button class="tag-filter active" data-tag="all">すべて</button>
+            <button class="tag-filter" data-tag="サンプル">サンプル</button>
+            <button class="tag-filter" data-tag="技術">技術</button>
+            <button class="tag-filter" data-tag="ニュース">ニュース</button>
+            <button class="tag-filter" data-tag="ブログ">ブログ</button>
+          </div>
+        </div>
+        <div class="updates-grid">
+          <div class="empty-state">
+            <p>まだ更新はありません</p>
+            <p>URLを追加して巡回を待ちましょう</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- フィード管理ビュー -->
+      <section id="feeds-view" class="view">
+        <div class="view-header">
+          <h2>登録フィード</h2>
+          <button class="btn-primary" id="add-feed-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+            フィード追加
+          </button>
+        </div>
+        <div class="feeds-list">
+          <div class="feed-item" data-id="example-1">
+            <div class="feed-info">
+              <h4 class="feed-title">Example Site</h4>
+              <a class="feed-url" href="https://example.com" target="_blank">https://example.com</a>
+              <div class="feed-tags">
+                <span class="tag small">サンプル</span>
+              </div>
+            </div>
+            <div class="feed-status">
+              <span class="status-label">最終確認:</span>
+              <span class="status-value">未取得</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 設定ビュー -->
+      <section id="settings-view" class="view">
+        <div class="view-header">
+          <h2>設定</h2>
+        </div>
+        <div class="settings-content">
+          <div class="setting-group">
+            <h3>タグ管理</h3>
+            <div class="tag-manager">
+              <div class="current-tags">
+                <span class="tag editable" data-tag="サンプル">
+                  サンプル
+                  <button class="tag-remove" aria-label="削除">×</button>
+                </span>
+                <span class="tag editable" data-tag="技術">
+                  技術
+                  <button class="tag-remove" aria-label="削除">×</button>
+                </span>
+                <span class="tag editable" data-tag="ニュース">
+                  ニュース
+                  <button class="tag-remove" aria-label="削除">×</button>
+                </span>
+                <span class="tag editable" data-tag="ブログ">
+                  ブログ
+                  <button class="tag-remove" aria-label="削除">×</button>
+                </span>
+              </div>
+              <div class="add-tag-form">
+                <input type="text" id="new-tag-input" placeholder="新しいタグ名">
+                <button class="btn-secondary" id="add-tag-btn">追加</button>
+              </div>
+            </div>
+          </div>
+          <div class="setting-group">
+            <h3>情報</h3>
+            <p class="info-text">
+              MFTは1時間ごとにGitHub Actionsで自動巡回します。<br>
+              更新があった場合、差分が記録されトップページに表示されます。
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- フィード追加モーダル -->
+    <div class="modal" id="add-feed-modal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <header class="modal-header">
+          <h3>フィードを追加</h3>
+          <button class="modal-close" aria-label="閉じる">×</button>
+        </header>
+        <form id="add-feed-form" class="modal-body">
+          <div class="form-group">
+            <label for="feed-url">URL <span class="required">*</span></label>
+            <input type="url" id="feed-url" name="url" required placeholder="https://example.com">
+          </div>
+          <div class="form-group">
+            <label for="feed-title">タイトル</label>
+            <input type="text" id="feed-title" name="title" placeholder="サイト名（空欄で自動取得）">
+          </div>
+          <div class="form-group">
+            <label for="feed-selector">CSSセレクタ</label>
+            <input type="text" id="feed-selector" name="selector" placeholder="body（監視対象の要素）" value="body">
+          </div>
+          <div class="form-group">
+            <label>タグ</label>
+            <div class="tag-select">
+              <label class="tag-checkbox">
+                <input type="checkbox" name="tags" value="サンプル">
+                <span>サンプル</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="tags" value="技術">
+                <span>技術</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="tags" value="ニュース">
+                <span>ニュース</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="tags" value="ブログ">
+                <span>ブログ</span>
+              </label>
+            </div>
+          </div>
+        </form>
+        <footer class="modal-footer">
+          <button type="button" class="btn-secondary modal-cancel">キャンセル</button>
+          <button type="submit" form="add-feed-form" class="btn-primary">追加</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="main-footer">
+      <p>最終更新: <time id="last-update">2026-01-19 14:39</time></p>
+      <p class="footer-meta">Powered by GitHub Actions · 1時間ごとに自動巡回</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

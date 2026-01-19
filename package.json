@@ -1,0 +1,18 @@
+{
+  "name": "mft",
+  "version": "1.0.0",
+  "description": "My Favorite Things - RSSのようなURL更新監視ツール",
+  "main": "index.js",
+  "scripts": {
+    "crawl": "node scripts/crawler.js",
+    "build": "node scripts/build.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "diff": "^5.1.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,92 @@
+# MFT - 自動巡回ワークフロー
+# 1時間ごとにURLを巡回し、更新を検出してGitHub Pagesにデプロイ
+
+name: Crawl and Deploy
+
+on:
+  # 1時間ごとにスケジュール実行
+  schedule:
+    - cron: '0 * * * *'  # 毎時0分に実行
+  
+  # 手動実行も可能
+  workflow_dispatch:
+  
+  # プッシュ時にも実行（初期設定のため）
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node.js をセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 依存関係をインストール
+        run: npm ci
+
+      - name: URL巡回を実行
+        run: npm run crawl
+        env:
+          TZ: 'Asia/Tokyo'
+
+      - name: 静的ファイルをビルド
+        run: npm run build
+        env:
+          TZ: 'Asia/Tokyo'
+
+      - name: 変更をコミット
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --staged --quiet || git commit -m "🔄 $(date '+%Y-%m-%d %H:%M') の自動巡回結果"
+        env:
+          TZ: 'Asia/Tokyo'
+
+      - name: 変更をプッシュ
+        run: git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # GitHub Pages へのデプロイ
+  deploy:
+    needs: crawl
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          ref: main  # 最新のコミットを取得
+
+      - name: Pages の設定
+        uses: actions/configure-pages@v4
+
+      - name: アーティファクトをアップロード
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+
+      - name: GitHub Pages にデプロイ
+        id: deployment
+        uses: actions/deploy-pages@v4
