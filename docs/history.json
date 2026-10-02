@@ -1,6 +1,27 @@
 {
   "updates": [
     {
+      "id": "example-1-1790967610993",
+      "feedId": "example-1",
+      "feedTitle": "Example Domain",
+      "url": "https://example.com",
+      "tags": [
+        "サンプル"
+      ],
+      "detectedAt": "2026-10-02T19:00:10.865Z",
+      "diff": [
+        {
+          "type": "removed",
+          "content": "This domain is for use in documentation examples without needing permission. This is not a service, avoid relying on it for testing and monitoring purposes.Learn more"
+        },
+        {
+          "type": "added",
+          "content": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes."
+        }
+      ],
+      "diffSummary": "+1件 / -1件"
+    },
+    {
       "id": "example-1-1790620192773",
       "feedId": "example-1",
       "feedTitle": "Example Domain",
